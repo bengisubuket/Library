@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<body>
+
+    <h1>Books of {{nameOfAuthor}}</h1>
+    <table id="books-table" class="table table-striped table-bordered" class="display compact">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each booksToRender}}
+          <tr>
+            <td>{{name}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table> 
+
+</body>
+</html>

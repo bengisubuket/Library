@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<body>
+
+    <h1>Book Series</h1>
+
+    <table id="bookSeries-table" class="table table-striped table-bordered" class="display compact">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number Of Books</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each seriesToRender}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{numOfBooks}}</td>
+            <td>
+                <form action="/bookSeries/books/{{_id}}">
+                    <input type="submit" value="See" />
+                </form><br><br>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table> 
+
+      <p>New Series</p>
+      <form action="/bookSeries" method="post" id="seriesform">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="numOfBooks">Number of Books:</label>
+        <input type="number" id="numOfBooks" name="numOfBooks">
+      </form>
+
+      <button type="submit" form="seriesform" value="Submit">Add</button>
+
+
+</body>
+</html>

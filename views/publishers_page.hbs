@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<body>
+
+    <h1>Publishers List</h1>
+
+    <table id="publisher-table" class="table table-striped table-bordered" class="display compact">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each publishersToRender}}
+          <tr>
+            <td>{{name}}</td>
+            <td>            
+                <form action="/publishers/authors">
+                    <input type="submit" value="Books" />
+                </form><br><br>
+
+                <form action="/publishers/books">
+                    <input type="submit" value="Authors" />
+                </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table> 
+
+    <p>New Publisher</p>
+    <form action="/publishers" method="post" id="publisherform">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+    </form>
+
+      <button type="submit" form="publisherform" value="Submit">Add</button>
+
+
+</body>
+</html>

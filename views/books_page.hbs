@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<body>
+
+    <h1>Book List</h1>
+
+    <table id="library-table" class="table table-striped table-bordered" class="display compact">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Page</th>
+            <th>Language</th>
+            <th>Year</th>
+            <th>Subject</th>
+            <th>Publisher</th>
+            <td>Shelf Location</td>
+            <td>Views</td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each booksToRender}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{author.name}}</td>
+            <td>{{page}}</td>
+            <td>{{language}}</td>
+            <td>{{year}}</td>
+            <td>{{subject}}</td>
+            <td>{{publisher}}</td>
+            <td>{{shelfLoc}}</td>
+            <td>
+                {{#each views}}
+                    {{userName}} - {{formattedDate}}: {{view}}<br><br>
+                {{/each}}
+                <form action="/books/views/{{_id}}" method="post">
+                  <label for="userName">Name:</label>
+                  <input type="text" id="userName" name="userName"><br><br>
+                  <label for="view">View:</label>
+                  <input type="text" id="view" name="view"><br><br>
+                  <button type="submit" value="Submit">Add view</button>
+                </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table> 
+
+    <p>New Book</p>
+
+    <form action="/books" method="post" id="bookform">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="author">Author:</label>
+        <select name="author" id="author">
+            {{#each authors}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select> <br><br>
+        <label for="page">Page:</label>
+        <input type="number" id="page" name="page"><br><br>
+        <label for="language">Language:</label>
+        <select name="language" id="language">
+            <option value="tr">Turkish</option>
+            <option value="eng">English</option>
+        </select> <br> <br>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year"><br><br>
+        <label for="subject">Subject:</label>
+        <select name="subject" id="subject">
+            <option value="arts">Arts</option>
+            <option value="animals">Animals</option>
+            <option value="fiction">Fiction</option>
+            <option value="science and math">Science and Math</option>
+            <option value="children">Children</option>
+            <option value="history">History</option>
+            <option value="health and wellness">Health and Wellness</option>
+            <option value="biography">Biography</option>
+            <option value="social sciences">Social Sciences</option>
+            <option value="text books">Text Books</option>
+            <option value="places">Places</option>
+            <option value="books by language">Books by Language</option>
+        </select> <br> <br>
+        <label for="publisher">Publisher</label>
+        <select name="publisher" id="publisher">
+            {{#each publishers}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select> <br><br>
+        <label for="shelfLoc">Shelf Location:</label>
+        <input type="text" id="shelfLoc" name="shelfLoc">
+    </form>
+
+
+    <button type="submit" form="bookform" value="Submit">Submit</button>
+
+
+</body>
+
+</html>
